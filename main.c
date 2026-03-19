@@ -41,6 +41,20 @@ void trace(uint8_t op, uint8_t a, uint8_t b) {
 }
 
 int main() {
+    mem[50] = 10;   // array[0]
+    mem[51] = 20;   // array[1]
+    mem[52] = 30;   // array[2]
+
+    mem[0] = 0x05; mem[1] = 0; mem[2] = 0;
+    mem[3] = 0x01; mem[4] = 1; mem[5] = 50;
+    mem[6] = 0x03; mem[7] = 0; mem[8] = 1;
+    mem[9]  = 0x01; mem[10] = 1; mem[11] = 51;
+    mem[12] = 0x03; mem[13] = 0; mem[14] = 1;
+    mem[15] = 0x01; mem[16] = 1; mem[17] = 52;
+    mem[18] = 0x03; mem[19] = 0; mem[20] = 1;
+    mem[21] = 0x0A; mem[22] = 0; mem[23] = 0;
+    
+
     while (running && pc < 256) {
         uint8_t op, a, b;
         ciclo++;
@@ -48,5 +62,7 @@ int main() {
         decode_execute(op, a, b);
         trace(op, a, b);
     }
+
+    printf("\n seu resultado: R0 = %d\n", reg[0]);
     return 0;
 }
