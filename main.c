@@ -47,9 +47,9 @@ int main() {
 
     mem[0] = 0x05; mem[1] = 0; mem[2] = 0;
     mem[3] = 0x01; mem[4] = 1; mem[5] = 50;
-    mem[6] = 0x03; mem[7] = 0; mem[8] = 1;
-    mem[9]  = 0x01; mem[10] = 1; mem[11] = 51;
-    mem[12] = 0x03; mem[13] = 0; mem[14] = 1;
+    mem[6] = 0x03; mem[7] = 0; mem[8] = 1;      // 
+    mem[9]  = 0x01; mem[10] = 1; mem[11] = 51;  // AQUI ESTA O SOMATORIO
+    mem[12] = 0x03; mem[13] = 0; mem[14] = 1;   // 
     mem[15] = 0x01; mem[16] = 1; mem[17] = 52;
     mem[18] = 0x03; mem[19] = 0; mem[20] = 1;
     mem[21] = 0x0A; mem[22] = 0; mem[23] = 0;
