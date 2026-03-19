@@ -10,3 +10,14 @@ typedef struct {
     int zero_flag; // Flag de zero
     int running;   // Controle do loop
 } CPU;
+
+extern int memory[MEM_SIZE]; //uma memoria global
+
+void inicializar(CPU *cpu);
+void rodar_programa();
+int  fetch(CPU *cpu);
+void decode_execute(CPU *cpu, int instruction); //recebe uma instrução em formato numérico e descobre o que fazer com ela.
+void run(CPU *cpu); // Ela fica rodando o ciclo do processador até o programa terminar.
+
+
+#endif
