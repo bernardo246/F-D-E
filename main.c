@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint8_t mem[256] = {0};
-uint8_t reg[4] = {0};
-uint8_t pc = 0, zf = 0, running = 1;
-int ciclo = 0;
+uint8_t mem[256] = {0};  // memória principal com 256 posições, iniciada em 0
+uint8_t reg[4] = {0};    // 4 registradores (R0, R1, R2, R3), iniciados em 0
+uint8_t pc = 0;          // Program Counter: aponta para a próxima instrução
+uint8_t zf = 0;          // Zero Flag: vira 1 quando uma comparação é igual
+uint8_t running = 1;     // controle do loop: 0 = parar, 1 = continuar
+int ciclo = 0;           // contador de ciclos executados
 
+// busca 3 bytes da memória: opcode, operando A e operando B
 void fetch(uint8_t *op, uint8_t *a, uint8_t *b) {
     *op = mem[pc]; *a = mem[pc+1]; *b = mem[pc+2];
     pc += 3;
 }
 
+// decodifica o opcode e executa a instrução correspondente
 void decode_execute(uint8_t op, uint8_t a, uint8_t b) {
     switch (op) {
         case 0x01: reg[a] = mem[b]; break;
@@ -26,6 +30,7 @@ void decode_execute(uint8_t op, uint8_t a, uint8_t b) {
     }
 }
 
+// imprime o estado do processador após cada instrução (trace de execução)
 void trace(uint8_t op, uint8_t a, uint8_t b) {
     const char *nomes[] = {"","LOAD","STORE","ADD",
         "SUB","MOV","CMP","JMP","JZ","JNZ","HALT"};
@@ -36,7 +41,6 @@ void trace(uint8_t op, uint8_t a, uint8_t b) {
 }
 
 int main() {
-    // TODO: carregar programa e dados na mem[]
     while (running && pc < 256) {
         uint8_t op, a, b;
         ciclo++;
